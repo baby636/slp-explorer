@@ -1,5 +1,70 @@
 {
     "configurations": [
+        {
+            "name": "(Windows) Starten",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "Programmnamen eingeben, z. B. \"${workspaceFolder}/a.exe\"",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false
+        },
+
+        {
+            "name": "(gdb) Bash unter Windows – anfügen",
+            "type": "cppdbg",
+            "request": "attach",
+            "program": "Programmnamen eingeben, z. B. \"${workspaceFolder}/a.exe\"",
+            "processId": "${command:pickRemoteProcess}",
+            "pipeTransport": {
+                "debuggerPath": "/usr/bin/gdb",
+                "pipeProgram": "${env:windir}\\sysnative\\bash.exe",
+                "pipeArgs": ["-c"],
+                "pipeCwd": ""
+            },
+            "setupCommands": [
+                {
+                    "description": "Automatische Strukturierung und Einrückung für \"gdb\" aktivieren",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+
+        {
+            "name": "(gdb) An Pipe anfügen",
+            "type": "cppdbg",
+            "request": "attach",
+            "program": "Programmnamen eingeben, z. B. \"${workspaceFolder}/a.exe\"",
+            "processId": "${command:pickRemoteProcess}",
+            "pipeTransport": {
+                "debuggerPath": "/usr/bin/gdb",
+                "pipeProgram": "<Vollständiger Pfad zum Pipeprogramm wie z. B. \"plink.exe\">",
+                "pipeArgs": [],
+                "pipeCwd": ""
+            },
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Automatische Strukturierung und Einrückung für \"gdb\" aktivieren",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Electron Main",
+            "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron",
+            "program": "${workspaceFolder}/main.js",
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        },
+
         
         {
             "name": "(gdb) Bash unter Windows – starten",
