@@ -1,5 +1,57 @@
+{
+    "configurations": [
+        {
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach",
+            "processId": "${command:pickProcess}"
+        },
+        {
+            "name": "(gdb) An Pipe anfügen",
+            "type": "cppdbg",
+            "request": "attach",
+            "program": "Programmnamen eingeben, z. B. \"${workspaceFolder}/a.exe\"",
+            "processId": "${command:pickRemoteProcess}",
+            "pipeTransport": {
+                "debuggerPath": "/usr/bin/gdb",
+                "pipeProgram": "<Vollständiger Pfad zum Pipeprogramm wie z. B. \"plink.exe\">",
+                "pipeArgs": [],
+                "pipeCwd": ""
+            },
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Automatische Strukturierung und Einrückung für \"gdb\" aktivieren",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+    {
+        "name": "(gdb) Bash unter Windows – anfügen",
+        "type": "cppdbg",
+        "request": "attach",
+        "program": "Programmnamen eingeben, z. B. \"${workspaceFolder}/a.exe\"",
+        "processId": "${command:pickRemoteProcess}",
+        "pipeTransport": {
+            "debuggerPath": "/usr/bin/gdb",
+            "pipeProgram": "${env:windir}\\sysnative\\bash.exe",
+            "pipeArgs": ["-c"],
+            "pipeCwd": ""
+        },
+        "setupCommands": [
+            {
+                "description": "Automatische Strukturierung und Einrückung für \"gdb\" aktivieren",
+                "text": "-enable-pretty-printing",
+                "ignoreFailures": true
+            }
+        ]
+    }
+    ]
+}
 
-"program": "Programmnamen eingeben, z. B. \"${workspaceFolder}/a.exe\"",
+
+: "Programmnamen eingeben, z. B. \"${workspaceFolder}/a.exe\"",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
