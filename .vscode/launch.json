@@ -1,5 +1,31 @@
 {
     "configurations": [
+        
+        {
+            "name": "(gdb) Bash unter Windows – starten",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "Programmnamen eingeben, z. B. \"${workspaceFolder}/a.exe\"",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "pipeTransport": {
+                "debuggerPath": "/usr/bin/gdb",
+                "pipeProgram": "${env:windir}\\sysnative\\bash.exe",
+                "pipeArgs": ["-c"],
+                "pipeCwd": ""
+            },
+            "setupCommands": [
+                {
+                    "description": "Automatische Strukturierung und Einrückung für \"gdb\" aktivieren",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+
         {
             "name": "(gdb) Bash unter Windows – starten",
             "type": "cppdbg",

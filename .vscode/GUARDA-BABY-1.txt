@@ -1,0 +1,1728 @@
+memo: https://memo.cash/profile/162e55WqRj61cEURfKUsZh63ZWRMVc48cH
+
+
+SDK Set Up and Initialisation
+You can also refer our API Docs for better understanding. For any help please reach out to us.
+1. Install SDK
+
+JavaScript
+JAVASCRIPT
+
+Java
+JAVA
+/**
+	Javascript platforms - 
+	Web, Electron
+	
+	Source code: [GitHub](https://github.com/cruxprotocol/js-sdk)
+	Install via 'npm' : 'npm install @cruxpay/js-sdk'
+	or include directly as a script - 
+	<script src="https://unpkg.com/@cruxpay/js-sdk/dist/cruxpay-sdk-dom.js"/>
+	
+	
+	React Native - 
+	
+	Source code: [GitHub](https://github.com/cruxprotocol/rn-sdk)
+	Install npm package '@cruxpay/rn-sdk
+**/
+2. Initialize
+To initialise the SDK you need a walletClientName. Your sandbox subdomain is testwallet1.
+Please feel free to contact us at contact@cruxpay.com for any registration related queries.
+
+JavaScript
+JAVASCRIPT
+
+Java
+JAVA
+import {
+	CruxPay
+} from "@cruxpay/js-sdk";
+
+let cruxClient = new CruxPay.CruxClient({
+	walletClientName: "testwallet1",
+	privateKey: "6bd397......f1968f"
+});
+
+/** Some operations require a privateKey to be injected - like registering a CRUX ID **/
+3. Start Using
+
+JavaScript
+JAVASCRIPT
+
+Java
+JAVA
+// Resolve any existing CRUX ID for a currency
+cruxClient.resolveCurrencyAddressForCruxID('ankit@zel.crux', 'btc')
+	.then((address) => {
+		console.log(address);
+	})
+// Create a new CRUX ID - foo@testwallet.crux
+cruxClient.registerCruxID('foo')
+	.then((result) => {
+		console.log(result);
+		// ID Will be owned by the injected private key
+		// New IDs take 6-8 confirmations in the Bitcoin network to confirm.
+	})
+// You can check the status of the ID by asking the SDK for the CruxID State
+cruxClient.getCruxIDState()
+	.then((cruxIDState) => {
+		console.log(cruxIDState);
+	})
+// A registered ID allows you to associate cryptocurrency addresses
+cruxClient.putAddressMap({
+	'btc': {
+		'addressHash': '1z2...42a'
+	},
+	'eth' {
+		'addressHash': '0x12z2...2d'
+	}
+})
+
+
+>> 
+Welcome to ElectrumG!
+>> # Guarda Chrome Extension
+--------------
+### What is Guarda Chrome Extension?
+Guarda Extension allows accessing DApps (Decentralised Applications) working on Ethereum, Bitcoin and other blockchains. The access is performed through integrating Guarda Wallet with the Chrome Browser web page.
+
+![Guarda Chrome Extension](guarda_extension.png?raw=true "Guarda Chrome Extension")
+
+### How to work with the code?
+If you want to interact with a blockchain from your web page, you will need web3. Weâ€™ve re-developed it to provide access to a wallet without accessing the userâ€™s private keys.
+
+### Web3
+Guarda Extension exposes the web3 API with an injected web3 object that is accessible though JavaScript:
+``` javascript
+window.addEventListener('load', function() {
+  // Checking if Web3 has been injected by the browser
+  if (typeof web3 !== 'undefined') {
+    // Use Guarda provider
+    web3js = new Web3(web3.currentProvider);
+    // Check if extension is unlocked:
+    setInterval(function() {
+        // Old fashion way.
+        var isUnlocked = window.web3.eth.accounts[0].length > 0;
+        // New way (See next section)
+        var isLocked = !!window.guarda.defaultWallet
+      }, 1000);
+  } else {
+    // Guarda Extension is not install, handle this case:
+    handleThisCase();
+  }
+  // Now you can start your app
+  startYourApp()
+})
+```
+### Wallets api:
+You can access the wallet public addresses and balances with the walletâ€™s API.
+
+```javascript
+// Check is extension is unlocked
+window.addEventListener('load', () => {
+    // provides info about all wallets
+    const defaultWallet = windows.guarda.defaultWallet;
+
+    //   {address: "0xc0539d482eFF70648540dddddddddddddd",
+    //    balance: "0.1",
+    //    currency: "eth"}
+
+    // provides info about deafault wallet
+    const wallets = window.guarda.wallets;
+
+    //   [{address: "RViGdXfC7BR2U6iYt5BJFJasdasddqwqd", currency: "kmd", balance: "0"}
+    //    {address: "QWWwr8XwcEyp6tgPeRBbxXmoA>> 
+Welcome to ElectrumG!
+>> # Guarda Chrome Extension
+--------------
+### What is Guarda Chrome Extension?
+Guarda Extension allows accessing DApps (Decentralised Applications) working on Ethereum, Bitcoin and other blockchains. The access is performed through integrating Guarda Wallet with the Chrome Browser web page.
+
+![Guarda Chrome Extension](guarda_extension.png?raw=true "Guarda Chrome Extension")
+
+### How to work with the code?
+If you want to interact with a blockchain from your web page, you will need web3. Weâ€™ve re-developed it to provide access to a wallet without accessing the userâ€™s private keys.
+
+### Web3
+Guarda Extension exposes the web3 API with an injected web3 object that is accessible though JavaScript:
+``` javascript
+window.addEventListener('load', function() {
+  // Checking if Web3 has been injected by the browser
+  if (typeof web3 !== 'undefined') {
+    // Use Guarda provider
+    web3js = new Web3(web3.currentProvider);
+    // Check if extension is unlocked:
+    setInterval(function() {
+        // Old fashion way.
+        var isUnlocked = window.web3.eth.accounts[0].length > 0;
+        // New way (See next section)
+        var isLocked = !!window.guarda.defaultWallet
+      }, 1000);
+  } else {
+    // Guarda Extension is not install, handle this case:
+    handleThisCase();
+  }
+  // Now you can start your app
+  startYourApp()
+})
+```
+### Wallets api:
+You can access the wallet public addresses and balances with the walletâ€™s API.
+
+```javascript
+// Check is extension is unlocked
+window.addEventListener('load', () => {
+    // provides info about all wallets
+    const defaultWallet = windows.guarda.defaultWallet;
+
+    //   {address: "0xc0539d482eFF70648540dddddddddddddd",
+    //    balance: "0.1",
+    //    currency: "eth"}
+
+    // provides info about deafault wallet
+    const wallets = window.guarda.wallets;
+
+    //   [{address: "RViGdXfC7BR2U6iYt5BJFJasdasddqwqd", currency: "kmd", balance: "0"}
+    //    {address: "QWWwr8XwcEyp6tgPeRBbxXmoAsdqdawqew", currency: "qtum", balance: "0"}
+    //    {address: "0xc0539d482eFF70648540dddddddddddddd", currency: "eth",balance:"0.1"}]
+})
+```
+
+### Deep Links:
+You can add the deeplinks (buttons) to a web page to ease the payment process.
+
+The payment popup will appear immediately with the Extension installed. In case it is not, you will be redirected to [guarda.co](https://guarda.co)
+
+Example:
+```html
+<a target="_blank" href="https://guarda.co/app/send?amount=0.001&currencyFrom=btc&addressTo=1BZS3jJSCQRJiZJUaaS9t2yYv32nJ4NYcQ">
+  Pay with guarda
+</a>
+```
+Search params:
+* amount: number
+* addressTo: string
+* currencyFrom: string
+* gasLimit: string
+* gasPrice: string
+* nonce: string
+* extraId: string
+
+>> default_build_CC = gcc
+default_build_CXX = g++
+default_build_AR = ar
+default_build_RANLIB = ranlib
+default_build_STRIP = strip
+default_build_NM = nm
+default_build_OTOOL = otool
+default_build_INSTALL_NAME_TOOL = install_name_tool
+
+define add_build_tool_func
+build_$(build_os)_$1 ?= $$(default_build_$1)
+build_$(build_arch)_$(build_os)_$1 ?= $$(build_$(build_os)_$1)
+build_$1=$$(build_$(build_arch)_$(build_os)_$1)
+endef
+$(foreach var,CC CXX AR RANLIB NM STRIP SHA256SUM DOWNLOAD OTOOL INSTALL_NAME_TOOL,$(eval $(call add_build_tool_func,$(var))))
+define add_build_flags_func
+build_$(build_arch)_$(build_os)_$1 += $(build_$(build_os)_$1)
+build_$1=$$(build_$(build_arch)_$(build_os)_$1)
+endef
+$(foreach flags, CFLAGS CXXFLAGS LDFLAGS, $(eval $(call add_build_flags_func,$(flags))))
+
+>> sdqdawqew", currency: "qtum", balance: "0"}
+    //    {address: "0xc0539d482eFF70648540dddddddddddddd", currency: "eth",balance:"0.1"}]
+})
+```
+
+### Deep Links:
+You can add the deeplinks (buttons) to a web page to ease the payment process.
+
+The payment popup will appear immediately with the Extension installed. In case it is not, you will be redirected to [guarda.co](https://guarda.co)
+
+Example:
+```html
+<a target="_blank" href="https://guarda.co/app/send?amount=0.001&currencyFrom=btc&addressTo=1BZS3jJSCQRJiZJUaaS9t2yYv32nJ4NYcQ">
+  Pay with guarda
+</a>
+```
+Search params:
+* amount: number
+* addressTo: string
+* currencyFrom: string
+* gasLimit: string
+* gasPrice: string
+* nonce: string
+* extraId: string
+
+>> default_build_CC = gcc
+default_build_CXX = g++
+default_build_AR = ar
+default_build_RANLIB = ranlib
+default_build_STRIP = strip
+default_build_NM = nm
+default_build_OTOOL = otool
+default_build_INSTALL_NAME_TOOL = install_name_tool
+
+define add_build_tool_func
+build_$(build_os)_$1 ?= $$(default_build_$1)
+build_$(build_arch)_$(build_os)_$1 ?= $$(build_$(build_os)_$1)
+build_$1=$$(build_$(build_arch)_$(build_os)_$1)
+endef
+$(foreach var,CC CXX AR RANLIB NM STRIP SHA256SUM DOWNLOAD OTOOL INSTALL_NAME_TOOL,$(eval $(call add_build_tool_func,$(var))))
+define add_build_flags_func
+build_$(build_arch)_$(build_os)_$1 += $(build_$(build_os)_$1)
+build_$1=$$(build_$(build_arch)_$(build_os)_$1)
+endef
+$(foreach flags, CFLAGS CXXFLAGS LDFLAGS, $(eval $(call add_build_flags_func,$(flags))))
+
+>> ```html
+<a target="_blank" href="https://guarda.co/app/send?
+amount=0.001&currencyFrom=btc&addressTo=1BZS3jJSCQRJiZJUaaS9t2yYv32nJ4NYcQ">
+  Pay with guarda
+
+
+
+Each recipe consists of 3 main parts: defining identifiers, setting build
+variables, and defining build commands.
+
+The package "mylib" will be used here as an example
+
+General tips:
+- mylib_foo is written as $(package)_foo in order to make recipes more similar.
+- Secondary dependency packages relative to the bitcoin binaries/libraries (i.e.
+  those not in `ALLOWED_LIBRARIES` in `contrib/devtools/symbol-check.py`) don't
+  need to be shared and should be built statically whenever possible. See
+  [below](#secondary-dependencies) for more details.
+
+## Identifiers
+Each package is required to define at least these variables:
+
+    $(package)_version:
+    Version of the upstream library or program. If there is no version, a
+    placeholder such as 1.0 can be used.
+
+    $(package)_download_path:
+    Location of the upstream source, without the file-name. Usually http, https
+    or ftp. Secure transmission options like https should be preferred if
+    available.
+
+    $(package)_file_name:
+    The upstream source filename available at the download path.
+
+    $(package)_sha256_hash:
+    The sha256 hash of the upstream file
+
+These variables are optional:
+
+    $(package)_build_subdir:
+    cd to this dir before running configure/build/stage commands.
+
+    $(package)_download_file:
+    The file-name of the upstream source if it differs from how it should be
+    stored locally. This can be used to avoid storing file-names with strange
+    characters.
+
+    $(package)_dependencies:
+    Names of any other packages that this one depends on.
+
+    $(package)_patches:
+    Filenames of any patches needed to build the package
+
+    $(package)_extra_sources:
+    Any extra files that will be fetched via $(package)_fetch_cmds. These are
+    specified so that they can be fetched and verified via 'make download'.
+
+
+## Build Variables:
+After defining the main identifiers, build variables may be added or customized
+before running the build commands. They should be added to a function called
+$(package)_set_vars. For example:
+
+    define $(package)_set_vars
+    ...
+    endef
+
+Most variables can be prefixed with the host, architecture, or both, to make
+the modifications specific to that case. For example:
+
+    Universal:     $(package)_cc=gcc
+    Linux only:    $(package)_linux_cc=gcc
+    x86_64 only:       $(package)_x86_64_cc = gcc
+    x86_64 linux only: $(package)_x86_64_linux_cc = gcc
+
+These variables may be set to override or append their default values.
+
+    $(package)_cc
+    $(package)_cxx
+    $(package)_objc
+    $(package)_objcxx
+    $(package)_ar
+    $(package)_ranlib
+    $(package)_libtool
+    $(package)_nm
+    $(package)_cflags
+    $(package)_cxxflags
+    $(package)_ldflags
+    $(package)_cppflags
+    $(package)_config_env
+    $(package)_build_env
+    $(package)_stage_env
+    $(package)_build_opts
+    $(package)_config_opts
+
+The *_env variables are used to add environment variables to the respective
+commands.
+
+Many variables respect a debug/release suffix as well, in order to use them for
+only the appropriate build config. For example:
+
+    $(package)_cflags_release = -O3
+    $(package)_cflags_i686_debug = -g
+    $(package)_config_opts_release = --disable-debug
+
+These will be used in addition to the options that do not specify
+debug/release. All builds are considered to be release unless DEBUG=1 is set by
+the user. Other variables may be defined as needed.
+
+## Build commands:
+
+  For each build, a unique build dir and staging dir are created. For example,
+  `work/build/mylib/1.0-1adac830f6e` and `work/staging/mylib/1.0-1adac830f6e`.
+
+  The following build commands are available for each recipe:
+
+    $(package)_fetch_cmds:
+    Runs from: build dir
+    Fetch the source file. If undefined, it will be fetched and verified
+    against its hash.
+
+    $(package)_extract_cmds:
+    Runs from: build dir
+    Verify the source file against its hash and extract it. If undefined, the
+    source is assumed to be a tarball.
+
+    $(package)_preprocess_cmds:
+    Runs from: build dir/$(package)_build_subdir
+    Preprocess the source as necessary. If undefined, does nothing.
+
+    $(package)_config_cmds:
+    Runs from: build dir/$(package)_build_subdir
+    Configure the source. If undefined, does nothing.
+
+    $(package)_build_cmds:
+    Runs from: build dir/$(package)_build_subdir
+    Build the source. If undefined, does nothing.
+
+    $(package)_stage_cmds:
+    Runs from: build dir/$(package)_build_subdir
+    Stage the build results. If undefined, does nothing.
+
+  The following variables are available for each recipe:
+
+    $(1)_staging_dir: package's destination sysroot path
+    $(1)_staging_prefix_dir: prefix path inside of the package's staging dir
+    $(1)_extract_dir: path to the package's extracted sources
+    $(1)_build_dir: path where configure/build/stage commands will be run
+    $(1)_patch_dir: path where the package's patches (if any) are found
+
+Notes on build commands:
+
+For packages built with autotools, $($(package)_autoconf) can be used in the
+configure step to (usually) correctly configure automatically. Any
+$($(package)_config_opts) will be appended.
+
+Most autotools projects can be properly staged using:
+
+    $(MAKE) DESTDIR=$($(package)_staging_dir) install
+
+## Build outputs:
+
+In general, the output of a depends package should not contain any libtool
+archives. Instead, the package should output `.pc` (`pkg-config`) files where
+possible.
+
+From the [Gentoo Wiki entry](https://wiki.gentoo.org/wiki/Project:Quality_Assurance/Handling_Libtool_Archives):
+
+>  Libtool pulls in all direct and indirect dependencies into the .la files it
+>  creates. This leads to massive overlinking, which is toxic to the Gentoo
+>  ecosystem, as it leads to a massive number of unnecessary rebuilds.
+
+## Secondary dependencies:
+
+Secondary dependency packages relative to the bitcoin binaries/libraries (i.e.
+those not in `ALLOWED_LIBRARIES` in `contrib/devtools/symbol-check.py`) don't
+need to be shared and should be built statically whenever possible. This
+improves general build reliability as illustrated by the following example:
+
+When linking an executable against a shared library `libprimary` that has its
+own shared dependency `libsecondary`, we may need to specify the path to
+`libsecondary` on the link command using the `-rpath/-rpath-link` options, it is
+not sufficient to just say `libprimary`.
+
+For us, it's much easier to just link a static `libsecondary` into a shared
+`libprimary`. Especially because in our case, we are linking against a dummy
+`libprimary` anyway that we'll throw away. We don't care if the end-user has a
+static or dynamic `libseconday`, that's not our concern. With a static
+`libseconday`, when we need to link `libprimary` into our executable, there's no
+dependency chain to worry about as `libprimary` has all the symbols.
+
+## Build targets:
+
+To build an individual package (useful for debugging), following build targets are available.
+
+    make ${package}
+    make ${package}_fetched
+    make ${package}_extracted
+    make ${package}_preprocessed
+    make ${package}_configured
+    make ${package}_built
+    make ${package}_staged
+    make ${package}_postprocessed
+    make ${package}_cached
+    make ${package}_cached_checksum
+
+
+
+
+
+
+/build
+/spec
+*.coffee
+*.log
+*~
+*.swp
+.DS_Store
+.node-version
+.npmignore
+npm-debug.log
+
+
+
+
+
+
+
+
+
+{
+  "name": "mksnapshot",
+  "version": "0.3.4",
+  "lockfileVersion": 1,
+  "requires": true,
+  "dependencies": {
+    "abbrev": {
+      "version": "1.1.1",
+      "resolved": "https://registry.npmjs.org/abbrev/-/abbrev-1.1.1.tgz",
+      "integrity": "sha512-nne9/IiQ/hzIhY6pdDnbBtz7DjPTKrY00P/zvPSm5pOFkl6xuGrGnXn/VtTNNfNtAfZ9/1RtehkszU9qcTii0Q=="
+    },
+    "ajv": {
+      "version": "6.9.2",
+      "resolved": "https://registry.npmjs.org/ajv/-/ajv-6.9.2.tgz",
+      "integrity": "sha512-4UFy0/LgDo7Oa/+wOAlj44tp9K78u38E5/359eSrqEp1Z5PdVfimCcs7SluXMP755RUQu6d2b4AvF0R1C9RZjg==",
+      "requires": {
+        "fast-deep-equal": "^2.0.1",
+        "fast-json-stable-stringify": "^2.0.0",
+        "json-schema-traverse": "^0.4.1",
+        "uri-js": "^4.2.2"
+      }
+    },
+    "asn1": {
+      "version": "0.2.4",
+      "resolved": "https://registry.npmjs.org/asn1/-/asn1-0.2.4.tgz",
+      "integrity": "sha512-jxwzQpLQjSmWXgwaCZE9Nz+glAG01yF1QnWgbhGwHI5A6FRIEY6IVqtHhIepHqI7/kyEyQEagBC5mBEFlIYvdg==",
+      "requires": {
+        "safer-buffer": "~2.1.0"
+      }
+    },
+    "assert-plus": {
+      "version": "1.0.0",
+      "resolved": "https://registry.npmjs.org/assert-plus/-/assert-plus-1.0.0.tgz",
+      "integrity": "sha1-8S4PPF13sLHN2RRpQuTpbB5N1SU="
+    },
+    "asynckit": {
+      "version": "0.4.0",
+      "resolved": "https://registry.npmjs.org/asynckit/-/asynckit-0.4.0.tgz",
+      "integrity": "sha1-x57Zf380y48robyXkLzDZkdLS3k="
+    },
+    "aws-sign2": {
+      "version": "0.7.0",
+      "resolved": "https://registry.npmjs.org/aws-sign2/-/aws-sign2-0.7.0.tgz",
+      "integrity": "sha1-tG6JCTSpWR8tL2+G1+ap8bP+dqg="
+    },
+    "aws4": {
+      "version": "1.8.0",
+      "resolved": "https://registry.npmjs.org/aws4/-/aws4-1.8.0.tgz",
+      "integrity": "sha512-ReZxvNHIOv88FlT7rxcXIIC0fPt4KZqZbOlivyWtXLt8ESx84zd3kMC6iK5jVeS2qt+g7ftS7ye4fi06X5rtRQ=="
+    },
+    "balanced-match": {
+      "version": "1.0.0",
+      "resolved": "https://registry.npmjs.org/balanced-match/-/balanced-match-1.0.0.tgz",
+      "integrity": "sha1-ibTRmasr7kneFk6gK4nORi1xt2c="
+    },
+    "bcrypt-pbkdf": {
+      "version": "1.0.2",
+      "resolved": "https://registry.npmjs.org/bcrypt-pbkdf/-/bcrypt-pbkdf-1.0.2.tgz",
+      "integrity": "sha1-pDAdOJtqQ/m2f/PKEaP2Y342Dp4=",
+      "requires": {
+        "tweetnacl": "^0.14.3"
+      }
+    },
+    "binary": {
+      "version": "0.3.0",
+      "resolved": "https://registry.npmjs.org/binary/-/binary-0.3.0.tgz",
+      "integrity": "sha1-n2BVO8XOjDOG87VTz/R0Yq3sqnk=",
+      "requires": {
+        "buffers": "~0.1.1",
+        "chainsaw": "~0.1.0"
+      }
+    },
+    "brace-expansion": {
+      "version": "1.1.11",
+      "resolved": "https://registry.npmjs.org/brace-expansion/-/brace-expansion-1.1.11.tgz",
+      "integrity": "sha512-iCuPHDFgrHX7H2vEI/5xpz07zSHB00TpugqhmYtVmMO6518mCuRMoOYFldEBl0g187ufozdaHgWKcYFb61qGiA==",
+      "requires": {
+        "balanced-match": "^1.0.0",
+        "concat-map": "0.0.1"
+      }
+    },
+    "buffers": {
+      "version": "0.1.1",
+      "resolved": "https://registry.npmjs.org/buffers/-/buffers-0.1.1.tgz",
+      "integrity": "sha1-skV5w77U1tOWru5tmorn9Ugqt7s="
+    },
+    "caseless": {
+      "version": "0.12.0",
+      "resolved": "https://registry.npmjs.org/caseless/-/caseless-0.12.0.tgz",
+      "integrity": "sha1-G2gcIf+EAzyCZUMJBolCDRhxUdw="
+    },
+    "chainsaw": {
+      "version": "0.1.0",
+      "resolved": "https://registry.npmjs.org/chainsaw/-/chainsaw-0.1.0.tgz",
+      "integrity": "sha1-XqtQsor+WAdNDVgpE4iCi15fvJg=",
+      "requires": {
+        "traverse": ">=0.3.0 <0.4"
+      }
+    },
+    "combined-stream": {
+      "version": "1.0.7",
+      "resolved": "https://registry.npmjs.org/combined-stream/-/combined-stream-1.0.7.tgz",
+      "integrity": "sha512-brWl9y6vOB1xYPZcpZde3N9zDByXTosAeMDo4p1wzo6UMOX4vumB+TP1RZ76sfE6Md68Q0NJSrE/gbezd4Ul+w==",
+      "requires": {
+        "delayed-stream": "~1.0.0"
+      }
+    },
+    "concat-map": {
+      "version": "0.0.1",
+      "resolved": "https://registry.npmjs.org/concat-map/-/concat-map-0.0.1.tgz",
+      "integrity": "sha1-2Klr13/Wjfd5OnMDajug1UBdR3s="
+    },
+    "core-util-is": {
+      "version": "1.0.2",
+      "resolved": "https://registry.npmjs.org/core-util-is/-/core-util-is-1.0.2.tgz",
+      "integrity": "sha1-tf1UIgqivFq1eqtxQMlAdUUDwac="
+    },
+    "dashdash": {
+      "version": "1.14.1",
+      "resolved": "https://registry.npmjs.org/dashdash/-/dashdash-1.14.1.tgz",
+      "integrity": "sha1-hTz6D3y+L+1d4gMmuN1YEDX24vA=",
+      "requires": {
+        "assert-plus": "^1.0.0"
+      }
+    },
+    "decompress-zip": {
+      "version": "0.3.2",
+      "resolved": "https://registry.npmjs.org/decompress-zip/-/decompress-zip-0.3.2.tgz",
+      "integrity": "sha512-Ab1QY4LrWMrUuo53lLnmGOby7v8ryqxJ+bKibKSiPisx+25mhut1dScVBXAYx14i/PqSrFZvR2FRRazhLbvL+g==",
+      "requires": {
+        "binary": "^0.3.0",
+        "graceful-fs": "^4.1.3",
+        "mkpath": "^0.1.0",
+        "nopt": "^3.0.1",
+        "q": "^1.1.2",
+        "readable-stream": "^1.1.8",
+        "touch": "0.0.3"
+      }
+    },
+    "delayed-stream": {
+      "version": "1.0.0",
+      "resolved": "https://registry.npmjs.org/delayed-stream/-/delayed-stream-1.0.0.tgz",
+      "integrity": "sha1-3zrhmayt+31ECqrgsp4icrJOxhk="
+    },
+    "ecc-jsbn": {
+      "version": "0.1.2",
+      "resolved": "https://registry.npmjs.org/ecc-jsbn/-/ecc-jsbn-0.1.2.tgz",
+      "integrity": "sha1-OoOpBOVDUyh4dMVkt1SThoSamMk=",
+      "requires": {
+        "jsbn": "~0.1.0",
+        "safer-buffer": "^2.1.0"
+      }
+    },
+    "extend": {
+      "version": "3.0.2",
+      "resolved": "https://registry.npmjs.org/extend/-/extend-3.0.2.tgz",
+      "integrity": "sha512-fjquC59cD7CyW6urNXK0FBufkZcoiGG80wTuPujX590cB5Ttln20E2UB4S/WARVqhXffZl2LNgS+gQdPIIim/g=="
+    },
+    "extsprintf": {
+      "version": "1.3.0",
+      "resolved": "https://registry.npmjs.org/extsprintf/-/extsprintf-1.3.0.tgz",
+      "integrity": "sha1-lpGEQOMEGnpBT4xS48V06zw+HgU="
+    },
+    "fast-deep-equal": {
+      "version": "2.0.1",
+      "resolved": "https://registry.npmjs.org/fast-deep-equal/-/fast-deep-equal-2.0.1.tgz",
+      "integrity": "sha1-ewUhjd+WZ79/Nwv3/bLLFf3Qqkk="
+    },
+    "fast-json-stable-stringify": {
+      "version": "2.0.0",
+      "resolved": "https://registry.npmjs.org/fast-json-stable-stringify/-/fast-json-stable-stringify-2.0.0.tgz",
+      "integrity": "sha1-1RQsDK7msRifh9OnYREGT4bIu/I="
+    },
+    "forever-agent": {
+      "version": "0.6.1",
+      "resolved": "https://registry.npmjs.org/forever-agent/-/forever-agent-0.6.1.tgz",
+      "integrity": "sha1-+8cfDEGt6zf5bFd60e1C2P2sypE="
+    },
+    "form-data": {
+      "version": "2.3.3",
+      "resolved": "https://registry.npmjs.org/form-data/-/form-data-2.3.3.tgz",
+      "integrity": "sha512-1lLKB2Mu3aGP1Q/2eCOx0fNbRMe7XdwktwOruhfqqd0rIJWwN4Dh+E3hrPSlDCXnSR7UtZ1N38rVXm+6+MEhJQ==",
+      "requires": {
+        "asynckit": "^0.4.0",
+        "combined-stream": "^1.0.6",
+        "mime-types": "^2.1.12"
+      }
+    },
+    "fs-extra": {
+      "version": "0.26.7",
+      "resolved": "https://registry.npmjs.org/fs-extra/-/fs-extra-0.26.7.tgz",
+      "integrity": "sha1-muH92UiXeY7at20JGM9C0MMYT6k=",
+      "requires": {
+        "graceful-fs": "^4.1.2",
+        "jsonfile": "^2.1.0",
+        "klaw": "^1.0.0",
+        "path-is-absolute": "^1.0.0",
+        "rimraf": "^2.2.8"
+      }
+    },
+    "fs.realpath": {
+      "version": "1.0.0",
+      "resolved": "https://registry.npmjs.org/fs.realpath/-/fs.realpath-1.0.0.tgz",
+      "integrity": "sha1-FQStJSMVjKpA20onh8sBQRmU6k8="
+    },
+    "getpass": {
+      "version": "0.1.7",
+      "resolved": "https://registry.npmjs.org/getpass/-/getpass-0.1.7.tgz",
+      "integrity": "sha1-Xv+OPmhNVprkyysSgmBOi6YhSfo=",
+      "requires": {
+        "assert-plus": "^1.0.0"
+      }
+    },
+    "glob": {
+      "version": "7.1.3",
+      "resolved": "https://registry.npmjs.org/glob/-/glob-7.1.3.tgz",
+      "integrity": "sha512-vcfuiIxogLV4DlGBHIUOwI0IbrJ8HWPc4MU7HzviGeNho/UJDfi6B5p3sHeWIQ0KGIU0Jpxi5ZHxemQfLkkAwQ==",
+      "requires": {
+        "fs.realpath": "^1.0.0",
+        "inflight": "^1.0.4",
+        "inherits": "2",
+        "minimatch": "^3.0.4",
+        "once": "^1.3.0",
+        "path-is-absolute": "^1.0.0"
+      }
+    },
+    "graceful-fs": {
+      "version": "4.1.15",
+      "resolved": "https://registry.npmjs.org/graceful-fs/-/graceful-fs-4.1.15.tgz",
+      "integrity": "sha512-6uHUhOPEBgQ24HM+r6b/QwWfZq+yiFcipKFrOFiBEnWdy5sdzYoi+pJeQaPI5qOLRFqWmAXUPQNsielzdLoecA=="
+    },
+    "har-schema": {
+      "version": "2.0.0",
+      "resolved": "https://registry.npmjs.org/har-schema/-/har-schema-2.0.0.tgz",
+      "integrity": "sha1-qUwiJOvKwEeCoNkDVSHyRzW37JI="
+    },
+    "har-validator": {
+      "version": "5.1.3",
+      "resolved": "https://registry.npmjs.org/har-validator/-/har-validator-5.1.3.tgz",
+      "integrity": "sha512-sNvOCzEQNr/qrvJgc3UG/kD4QtlHycrzwS+6mfTrrSq97BvaYcPZZI1ZSqGSPR73Cxn4LKTD4PttRwfU7jWq5g==",
+      "requires": {
+        "ajv": "^6.5.5",
+        "har-schema": "^2.0.0"
+      }
+    },
+    "http-signature": {
+      "version": "1.2.0",
+      "resolved": "https://registry.npmjs.org/http-signature/-/http-signature-1.2.0.tgz",
+      "integrity": "sha1-muzZJRFHcvPZW2WmCruPfBj7rOE=",
+      "requires": {
+        "assert-plus": "^1.0.0",
+        "jsprim": "^1.2.2",
+        "sshpk": "^1.7.0"
+      }
+    },
+    "inflight": {
+      "version": "1.0.6",
+      "resolved": "https://registry.npmjs.org/inflight/-/inflight-1.0.6.tgz",
+      "integrity": "sha1-Sb1jMdfQLQwJvJEKEHW6gWW1bfk=",
+      "requires": {
+        "once": "^1.3.0",
+        "wrappy": "1"
+      }
+    },
+    "inherits": {
+      "version": "2.0.3",
+      "resolved": "https://registry.npmjs.org/inherits/-/inherits-2.0.3.tgz",
+      "integrity": "sha1-Yzwsg+PaQqUC9SRmAiSA9CCCYd4="
+    },
+    "is-typedarray": {
+      "version": "1.0.0",
+      "resolved": "https://registry.npmjs.org/is-typedarray/-/is-typedarray-1.0.0.tgz",
+      "integrity": "sha1-5HnICFjfDBsR3dppQPlgEfzaSpo="
+    },
+    "isarray": {
+      "version": "0.0.1",
+      "resolved": "https://registry.npmjs.org/isarray/-/isarray-0.0.1.tgz",
+      "integrity": "sha1-ihis/Kmo9Bd+Cav8YDiTmwXR7t8="
+    },
+    "isstream": {
+      "version": "0.1.2",
+      "resolved": "https://registry.npmjs.org/isstream/-/isstream-0.1.2.tgz",
+      "integrity": "sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo="
+    },
+    "jsbn": {
+      "version": "0.1.1",
+      "resolved": "https://registry.npmjs.org/jsbn/-/jsbn-0.1.1.tgz",
+      "integrity": "sha1-peZUwuWi3rXyAdls77yoDA7y9RM="
+    },
+    "json-schema": {
+      "version": "0.2.3",
+      "resolved": "https://registry.npmjs.org/json-schema/-/json-schema-0.2.3.tgz",
+      "integrity": "sha1-tIDIkuWaLwWVTOcnvT8qTogvnhM="
+    },
+    "json-schema-traverse": {
+      "version": "0.4.1",
+      "resolved": "https://registry.npmjs.org/json-schema-traverse/-/json-schema-traverse-0.4.1.tgz",
+      "integrity": "sha512-xbbCH5dCYU5T8LcEhhuh7HJ88HXuW3qsI3Y0zOZFKfZEHcpWiHU/Jxzk629Brsab/mMiHQti9wMP+845RPe3Vg=="
+    },
+    "json-stringify-safe": {
+      "version": "5.0.1",
+      "resolved": "https://registry.npmjs.org/json-stringify-safe/-/json-stringify-safe-5.0.1.tgz",
+      "integrity": "sha1-Epai1Y/UXxmg9s4B1lcB4sc1tus="
+    },
+    "jsonfile": {
+      "version": "2.4.0",
+      "resolved": "https://registry.npmjs.org/jsonfile/-/jsonfile-2.4.0.tgz",
+      "integrity": "sha1-NzaitCi4e72gzIO1P6PWM6NcKug=",
+      "requires": {
+        "graceful-fs": "^4.1.6"
+      }
+    },
+    "jsprim": {
+      "version": "1.4.1",
+      "resolved": "https://registry.npmjs.org/jsprim/-/jsprim-1.4.1.tgz",
+      "integrity": "sha1-MT5mvB5cwG5Di8G3SZwuXFastqI=",
+      "requires": {
+        "assert-plus": "1.0.0",
+        "extsprintf": "1.3.0",
+        "json-schema": "0.2.3",
+        "verror": "1.10.0"
+      }
+    },
+    "klaw": {
+      "version": "1.3.1",
+      "resolved": "https://registry.npmjs.org/klaw/-/klaw-1.3.1.tgz",
+      "integrity": "sha1-QIhDO0azsbolnXh4XY6W9zugJDk=",
+      "requires": {
+        "graceful-fs": "^4.1.9"
+      }
+    },
+    "mime-db": {
+      "version": "1.38.0",
+      "resolved": "https://registry.npmjs.org/mime-db/-/mime-db-1.38.0.tgz",
+      "integrity": "sha512-bqVioMFFzc2awcdJZIzR3HjZFX20QhilVS7hytkKrv7xFAn8bM1gzc/FOX2awLISvWe0PV8ptFKcon+wZ5qYkg=="
+    },
+    "mime-types": {
+      "version": "2.1.22",
+      "resolved": "https://registry.npmjs.org/mime-types/-/mime-types-2.1.22.tgz",
+      "integrity": "sha512-aGl6TZGnhm/li6F7yx82bJiBZwgiEa4Hf6CNr8YO+r5UHr53tSTYZb102zyU50DOWWKeOv0uQLRL0/9EiKWCog==",
+      "requires": {
+        "mime-db": "~1.38.0"
+      }
+    },
+    "minimatch": {
+      "version": "3.0.4",
+      "resolved": "https://registry.npmjs.org/minimatch/-/minimatch-3.0.4.tgz",
+      "integrity": "sha512-yJHVQEhyqPLUTgt9B83PXu6W3rx4MvvHvSUvToogpwoGDOUQ+yDrR0HRot+yOCdCO7u4hX3pWft6kWBBcqh0UA==",
+      "requires": {
+        "brace-expansion": "^1.1.7"
+      }
+    },
+    "mkpath": {
+      "version": "0.1.0",
+      "resolved": "https://registry.npmjs.org/mkpath/-/mkpath-0.1.0.tgz",
+      "integrity": "sha1-dVSm+Nhxg0zJe1RisSLEwSTW3pE="
+    },
+    "nopt": {
+      "version": "3.0.6",
+      "resolved": "https://registry.npmjs.org/nopt/-/nopt-3.0.6.tgz",
+      "integrity": "sha1-xkZdvwirzU2zWTF/eaxopkayj/k=",
+      "requires": {
+        "abbrev": "1"
+      }
+    },
+    "oauth-sign": {
+      "version": "0.9.0",
+      "resolved": "https://registry.npmjs.org/oauth-sign/-/oauth-sign-0.9.0.tgz",
+      "integrity": "sha512-fexhUFFPTGV8ybAtSIGbV6gOkSv8UtRbDBnAyLQw4QPKkgNlsH2ByPGtMUqdWkos6YCRmAqViwgZrJc/mRDzZQ=="
+    },
+    "once": {
+      "version": "1.4.0",
+      "resolved": "https://registry.npmjs.org/once/-/once-1.4.0.tgz",
+      "integrity": "sha1-WDsap3WWHUsROsF9nFC6753Xa9E=",
+      "requires": {
+        "wrappy": "1"
+      }
+    },
+    "path-is-absolute": {
+      "version": "1.0.1",
+      "resolved": "https://registry.npmjs.org/path-is-absolute/-/path-is-absolute-1.0.1.tgz",
+      "integrity": "sha1-F0uSaHNVNP+8es5r9TpanhtcX18="
+    },
+    "performance-now": {
+      "version": "2.1.0",
+      "resolved": "https://registry.npmjs.org/performance-now/-/performance-now-2.1.0.tgz",
+      "integrity": "sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns="
+    },
+    "psl": {
+      "version": "1.1.31",
+      "resolved": "https://registry.npmjs.org/psl/-/psl-1.1.31.tgz",
+      "integrity": "sha512-/6pt4+C+T+wZUieKR620OpzN/LlnNKuWjy1iFLQ/UG35JqHlR/89MP1d96dUfkf6Dne3TuLQzOYEYshJ+Hx8mw=="
+    },
+    "punycode": {
+      "version": "2.1.1",
+      "resolved": "https://registry.npmjs.org/punycode/-/punycode-2.1.1.tgz",
+      "integrity": "sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A=="
+    },
+    "q": {
+      "version": "1.5.1",
+      "resolved": "https://registry.npmjs.org/q/-/q-1.5.1.tgz",
+      "integrity": "sha1-fjL3W0E4EpHQRhHxvxQQmsAGUdc="
+    },
+    "qs": {
+      "version": "6.5.2",
+      "resolved": "https://registry.npmjs.org/qs/-/qs-6.5.2.tgz",
+      "integrity": "sha512-N5ZAX4/LxJmF+7wN74pUD6qAh9/wnvdQcjq9TZjevvXzSUo7bfmw91saqMjzGS2xq91/odN2dW/WOl7qQHNDGA=="
+    },
+    "readable-stream": {
+      "version": "1.1.14",
+      "resolved": "https://registry.npmjs.org/readable-stream/-/readable-stream-1.1.14.tgz",
+      "integrity": "sha1-fPTFTvZI44EwhMY23SB54WbAgdk=",
+      "requires": {
+        "core-util-is": "~1.0.0",
+        "inherits": "~2.0.1",
+        "isarray": "0.0.1",
+        "string_decoder": "~0.10.x"
+      }
+    },
+    "request": {
+      "version": "2.88.0",
+      "resolved": "https://registry.npmjs.org/request/-/request-2.88.0.tgz",
+      "integrity": "sha512-NAqBSrijGLZdM0WZNsInLJpkJokL72XYjUpnB0iwsRgxh7dB6COrHnTBNwN0E+lHDAJzu7kLAkDeY08z2/A0hg==",
+      "requires": {
+        "aws-sign2": "~0.7.0",
+        "aws4": "^1.8.0",
+        "caseless": "~0.12.0",
+        "combined-stream": "~1.0.6",
+        "extend": "~3.0.2",
+        "forever-agent": "~0.6.1",
+        "form-data": "~2.3.2",
+        "har-validator": "~5.1.0",
+        "http-signature": "~1.2.0",
+        "is-typedarray": "~1.0.0",
+        "isstream": "~0.1.2",
+        "json-stringify-safe": "~5.0.1",
+        "mime-types": "~2.1.19",
+        "oauth-sign": "~0.9.0",
+        "performance-now": "^2.1.0",
+        "qs": "~6.5.2",
+        "safe-buffer": "^5.1.2",
+        "tough-cookie": "~2.4.3",
+        "tunnel-agent": "^0.6.0",
+        "uuid": "^3.3.2"
+      }
+    },
+    "rimraf": {
+      "version": "2.6.3",
+      "resolved": "https://registry.npmjs.org/rimraf/-/rimraf-2.6.3.tgz",
+      "integrity": "sha512-mwqeW5XsA2qAejG46gYdENaxXjx9onRNCfn7L0duuP4hCuTIi/QO7PDK07KJfp1d+izWPrzEJDcSqBa0OZQriA==",
+      "requires": {
+        "glob": "^7.1.3"
+      }
+    },
+    "safe-buffer": {
+      "version": "5.1.2",
+      "resolved": "https://registry.npmjs.org/safe-buffer/-/safe-buffer-5.1.2.tgz",
+      "integrity": "sha512-Gd2UZBJDkXlY7GbJxfsE8/nvKkUEU1G38c1siN6QP6a9PT9MmHB8GnpscSmMJSoF8LOIrt8ud/wPtojys4G6+g=="
+    },
+    "safer-buffer": {
+      "version": "2.1.2",
+      "resolved": "https://registry.npmjs.org/safer-buffer/-/safer-buffer-2.1.2.tgz",
+      "integrity": "sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg=="
+    },
+    "sshpk": {
+      "version": "1.16.1",
+      "resolved": "https://registry.npmjs.org/sshpk/-/sshpk-1.16.1.tgz",
+      "integrity": "sha512-HXXqVUq7+pcKeLqqZj6mHFUMvXtOJt1uoUx09pFW6011inTMxqI8BA8PM95myrIyyKwdnzjdFjLiE6KBPVtJIg==",
+      "requires": {
+        "asn1": "~0.2.3",
+        "assert-plus": "^1.0.0",
+        "bcrypt-pbkdf": "^1.0.0",
+        "dashdash": "^1.12.0",
+        "ecc-jsbn": "~0.1.1",
+        "getpass": "^0.1.1",
+        "jsbn": "~0.1.0",
+        "safer-buffer": "^2.0.2",
+        "tweetnacl": "~0.14.0"
+      }
+    },
+    "string_decoder": {
+      "version": "0.10.31",
+      "resolved": "https://registry.npmjs.org/string_decoder/-/string_decoder-0.10.31.tgz",
+      "integrity": "sha1-YuIDvEF2bGwoyfyEMB2rHFMQ+pQ="
+    },
+    "touch": {
+      "version": "0.0.3",
+      "resolved": "https://registry.npmjs.org/touch/-/touch-0.0.3.tgz",
+      "integrity": "sha1-Ua7z1ElXHU8oel2Hyci0kYGg2x0=",
+      "requires": {
+        "nopt": "~1.0.10"
+      },
+      "dependencies": {
+        "nopt": {
+          "version": "1.0.10",
+          "resolved": "https://registry.npmjs.org/nopt/-/nopt-1.0.10.tgz",
+          "integrity": "sha1-bd0hvSoxQXuScn3Vhfim83YI6+4=",
+          "requires": {
+            "abbrev": "1"
+          }
+        }
+      }
+    },
+    "tough-cookie": {
+      "version": "2.4.3",
+      "resolved": "https://registry.npmjs.org/tough-cookie/-/tough-cookie-2.4.3.tgz",
+      "integrity": "sha512-Q5srk/4vDM54WJsJio3XNn6K2sCG+CQ8G5Wz6bZhRZoAe/+TxjWB/GlFAnYEbkYVlON9FMk/fE3h2RLpPXo4lQ==",
+      "requires": {
+        "psl": "^1.1.24",
+        "punycode": "^1.4.1"
+      },
+      "dependencies": {
+        "punycode": {
+          "version": "1.4.1",
+          "resolved": "https://registry.npmjs.org/punycode/-/punycode-1.4.1.tgz",
+          "integrity": "sha1-wNWmOycYgArY4esPpSachN1BhF4="
+        }
+      }
+    },
+    "traverse": {
+      "version": "0.3.9",
+      "resolved": "https://registry.npmjs.org/traverse/-/traverse-0.3.9.tgz",
+      "integrity": "sha1-cXuPIgzAu3tE5AUUwisui7xw2Lk="
+    },
+    "tunnel-agent": {
+      "version": "0.6.0",
+      "resolved": "https://registry.npmjs.org/tunnel-agent/-/tunnel-agent-0.6.0.tgz",
+      "integrity": "sha1-J6XeoGs2sEoKmWZ3SykIaPD8QP0=",
+      "requires": {
+        "safe-buffer": "^5.0.1"
+      }
+    },
+    "tweetnacl": {
+      "version": "0.14.5",
+      "resolved": "https://registry.npmjs.org/tweetnacl/-/tweetnacl-0.14.5.tgz",
+      "integrity": "sha1-WuaBd/GS1EViadEIr6k/+HQ/T2Q="
+    },
+    "uri-js": {
+      "version": "4.2.2",
+      "resolved": "https://registry.npmjs.org/uri-js/-/uri-js-4.2.2.tgz",
+      "integrity": "sha512-KY9Frmirql91X2Qgjry0Wd4Y+YTdrdZheS8TFwvkbLWf/G5KNJDCh6pKL5OZctEW4+0Baa5idK2ZQuELRwPznQ==",
+      "requires": {
+        "punycode": "^2.1.0"
+      }
+    },
+    "uuid": {
+      "version": "3.3.2",
+      "resolved": "https://registry.npmjs.org/uuid/-/uuid-3.3.2.tgz",
+      "integrity": "sha512-yXJmeNaw3DnnKAOKJE51sL/ZaYfWJRl1pK9dr19YFCu0ObS231AB1/LbqTKRAQ5kw8A90rA6fr4riOUpTZvQZA=="
+    },
+    "verror": {
+      "version": "1.10.0",
+      "resolved": "https://registry.npmjs.org/verror/-/verror-1.10.0.tgz",
+      "integrity": "sha1-OhBcoXBTr1XW4nDB+CiGguGNpAA=",
+      "requires": {
+        "assert-plus": "^1.0.0",
+        "core-util-is": "1.0.2",
+        "extsprintf": "^1.2.0"
+      }
+    },
+    "wrappy": {
+      "version": "1.0.2",
+      "resolved": "https://registry.npmjs.org/wrappy/-/wrappy-1.0.2.tgz",
+      "integrity": "sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8="
+    }
+  }
+}
+
+package=rapidcheck
+$(package)_version=d9482c683429fe79122e3dcab14c9655874aeb8e
+$(package)_download_path=https://github.com/emil-e/rapidcheck/archive
+$(package)_file_name=$($(package)_version).tar.gz
+$(package)_sha256_hash=b9ee8955b175fd3c0757ebd887bb075541761af08b0c28391b7c6c0685351f6b
+
+define $(package)_config_cmds
+  cmake -DCMAKE_INSTALL_PREFIX=$($(package)_staging_dir)$(host_prefix) -DCMAKE_POSITION_INDEPENDENT_CODE:BOOL=true -DRC_ENABLE_BOOST_TEST=ON -B .
+endef
+
+define $(package)_preprocess_cmds
+  sed -i.old 's/ -Wall//' CMakeLists.txt
+endef
+
+define $(package)_build_cmds
+  $(MAKE) rapidcheck
+endef
+
+define $(package)_stage_cmds
+  $(MAKE) rapidcheck install
+endef
+
+
+
+ifneq ($(host),$(build))
+host_toolchain:=$(host)-
+endif
+
+default_host_CC = $(host_toolchain)gcc
+default_host_CXX = $(host_toolchain)g++
+default_host_AR = $(host_toolchain)ar
+default_host_RANLIB = $(host_toolchain)ranlib
+default_host_STRIP = $(host_toolchain)strip
+default_host_LIBTOOL = $(host_toolchain)libtool
+default_host_INSTALL_NAME_TOOL = $(host_toolchain)install_name_tool
+default_host_OTOOL = $(host_toolchain)otool
+default_host_NM = $(host_toolchain)nm
+
+define add_host_tool_func
+$(host_os)_$1?=$$(default_host_$1)
+$(host_arch)_$(host_os)_$1?=$$($(host_os)_$1)
+$(host_arch)_$(host_os)_$(release_type)_$1?=$$($(host_os)_$1)
+host_$1=$$($(host_arch)_$(host_os)_$1)
+endef
+
+define add_host_flags_func
+$(host_arch)_$(host_os)_$1 += $($(host_os)_$1)
+$(host_arch)_$(host_os)_$(release_type)_$1 += $($(host_os)_$(release_type)_$1)
+host_$1 = $$($(host_arch)_$(host_os)_$1)
+host_$(release_type)_$1 = $$($(host_arch)_$(host_os)_$(release_type)_$1)
+endef
+
+$(foreach tool,CC CXX AR RANLIB STRIP NM LIBTOOL OTOOL INSTALL_NAME_TOOL,$(eval $(call add_host_tool_func,$(tool))))
+$(foreach flags,CFLAGS CXXFLAGS CPPFLAGS LDFLAGS, $(eval $(call add_host_flags_func,$(flags))))
+
+
+
+package=bdb
+$(package)_version=4.8.30
+$(package)_download_path=https://download.oracle.com/berkeley-db
+$(package)_file_name=db-$($(package)_version).NC.tar.gz
+$(package)_sha256_hash=12edc0df75bf9abd7f82f821795bcee50f42cb2e5f76a6a281b85732798364ef
+$(package)_build_subdir=build_unix
+
+define $(package)_set_vars
+$(package)_config_opts=--disable-shared --enable-cxx --disable-replication --enable-option-checking
+$(package)_config_opts_mingw32=--enable-mingw
+$(package)_config_opts_linux=--with-pic
+$(package)_cxxflags=-std=c++11
+$(package)_cppflags_mingw32=-DUNICODE -D_UNICODE
+endef
+
+define $(package)_preprocess_cmds
+  sed -i.old 's/__atomic_compare_exchange/__atomic_compare_exchange_db/' dbinc/atomic.h && \
+  sed -i.old 's/atomic_init/atomic_init_db/' dbinc/atomic.h mp/mp_region.c mp/mp_mvcc.c mp/mp_fget.c mutex/mut_method.c mutex/mut_tas.c && \
+  cp -f $(BASEDIR)/config.guess $(BASEDIR)/config.sub dist
+endef
+
+define $(package)_config_cmds
+  ../dist/$($(package)_autoconf)
+endef
+
+define $(package)_build_cmds
+  $(MAKE) libdb_cxx-4.8.a libdb-4.8.a
+endef
+
+define $(package)_stage_cmds
+  $(MAKE) DESTDIR=$($(package)_staging_dir) install_lib install_include
+endef
+
+
+
+// LZ.InWindow
+
+package SevenZip.Compression.LZ;
+
+import java.io.IOException;
+
+public class InWindow
+{
+	public byte[] _bufferBase; // pointer to buffer with data
+	java.io.InputStream _stream;
+	int _posLimit;  // offset (from _buffer) of first byte when new block reading must be done
+	boolean _streamEndWasReached; // if (true) then _streamPos shows real end of stream
+	
+	int _pointerToLastSafePosition;
+	
+	public int _bufferOffset;
+	
+	public int _blockSize;  // Size of Allocated memory block
+	public int _pos;             // offset (from _buffer) of curent byte
+	int _keepSizeBefore;  // how many BYTEs must be kept in buffer before _pos
+	int _keepSizeAfter;   // how many BYTEs must be kept buffer after _pos
+	public int _streamPos;   // offset (from _buffer) of first not read byte from Stream
+	
+	public void MoveBlock()
+	{
+		int offset = _bufferOffset + _pos - _keepSizeBefore;
+		// we need one additional byte, since MovePos moves on 1 byte.
+		if (offset > 0)
+			offset--;
+
+		int numBytes = _bufferOffset + _streamPos - offset;
+		
+		// check negative offset ????
+		for (int i = 0; i < numBytes; i++)
+			_bufferBase[i] = _bufferBase[offset + i];
+		_bufferOffset -= offset;
+	}
+	
+	public void ReadBlock() throws IOException
+	{
+		if (_streamEndWasReached)
+			return;
+		while (true)
+		{
+			int size = (0 - _bufferOffset) + _blockSize - _streamPos;
+			if (size == 0)
+				return;
+			int numReadBytes = _stream.read(_bufferBase, _bufferOffset + _streamPos, size);
+			if (numReadBytes == -1)
+			{
+				_posLimit = _streamPos;
+				int pointerToPostion = _bufferOffset + _posLimit;
+				if (pointerToPostion > _pointerToLastSafePosition)
+					_posLimit = _pointerToLastSafePosition - _bufferOffset;
+				
+				_streamEndWasReached = true;
+				return;
+			}
+			_streamPos += numReadBytes;
+			if (_streamPos >= _pos + _keepSizeAfter)
+				_posLimit = _streamPos - _keepSizeAfter;
+		}
+	}
+	
+	void Free() { _bufferBase = null; }
+	
+	public void Create(int keepSizeBefore, int keepSizeAfter, int keepSizeReserv)
+	{
+		_keepSizeBefore = keepSizeBefore;
+		_keepSizeAfter = keepSizeAfter;
+		int blockSize = keepSizeBefore + keepSizeAfter + keepSizeReserv;
+		if (_bufferBase == null || _blockSize != blockSize)
+		{
+			Free();
+			_blockSize = blockSize;
+			_bufferBase = new byte[_blockSize];
+		}
+		_pointerToLastSafePosition = _blockSize - keepSizeAfter;
+	}
+	
+	public void SetStream(java.io.InputStream stream) { _stream = stream; 	}
+	public void ReleaseStream() { _stream = null; }
+
+	public void Init() throws IOException
+	{
+		_bufferOffset = 0;
+		_pos = 0;
+		_streamPos = 0;
+		_streamEndWasReached = false;
+		ReadBlock();
+	}
+	
+	public void MovePos() throws IOException
+	{
+		_pos++;
+		if (_pos > _posLimit)
+		{
+			int pointerToPostion = _bufferOffset + _pos;
+			if (pointerToPostion > _pointerToLastSafePosition)
+				MoveBlock();
+			ReadBlock();
+		}
+	}
+	
+	public byte GetIndexByte(int index)	{ return _bufferBase[_bufferOffset + _pos + index]; }
+	
+	// index + limit have not to exceed _keepSizeAfter;
+	public int GetMatchLen(int index, int distance, int limit)
+	{
+		if (_streamEndWasReached)
+			if ((_pos + index) + limit > _streamPos)
+				limit = _streamPos - (_pos + index);
+		distance++;
+		// Byte *pby = _buffer + (size_t)_pos + index;
+		int pby = _bufferOffset + _pos + index;
+		
+		int i;
+		for (i = 0; i < limit && _bufferBase[pby + i] == _bufferBase[pby + i - distance]; i++);
+		return i;
+	}
+	
+	public int GetNumAvailableBytes()	{ return _streamPos - _pos; }
+	
+	public void ReduceOffsets(int subValue)
+	{
+		_bufferOffset += subValue;
+		_posLimit -= subValue;
+		_pos -= subValue;
+		_streamPos -= subValue;
+	}
+}
+>> 
+Welcome to ElectrumG!
+>> # Guarda Chrome Extension
+--------------
+### What is Guarda Chrome Extension?
+Guarda Extension allows accessing DApps (Decentralised Applications) working on Ethereum, Bitcoin and other blockchains. The access is performed through integrating Guarda Wallet with the Chrome Browser web page.
+
+![Guarda Chrome Extension](guarda_extension.png?raw=true "Guarda Chrome Extension")
+
+### How to work with the code?
+If you want to interact with a blockchain from your web page, you will need web3. Weâ€™ve re-developed it to provide access to a wallet without accessing the userâ€™s private keys.
+
+### Web3
+Guarda Extension exposes the web3 API with an injected web3 object that is accessible though JavaScript:
+``` javascript
+window.addEventListener('load', function() {
+  // Checking if Web3 has been injected by the browser
+  if (typeof web3 !== 'undefined') {
+    // Use Guarda provider
+    web3js = new Web3(web3.currentProvider);
+    // Check if extension is unlocked:
+    setInterval(function() {
+        // Old fashion way.
+        var isUnlocked = window.web3.eth.accounts[0].length > 0;
+        // New way (See next section)
+        var isLocked = !!window.guarda.defaultWallet
+      }, 1000);
+  } else {
+    // Guarda Extension is not install, handle this case:
+    handleThisCase();
+  }
+  // Now you can start your app
+  startYourApp()
+})
+```
+### Wallets api:
+You can access the wallet public addresses and balances with the walletâ€™s API.
+
+```javascript
+// Check is extension is unlocked
+window.addEventListener('load', () => {
+    // provides info about all wallets
+    const defaultWallet = windows.guarda.defaultWallet;
+
+    //   {address: "0xc0539d482eFF70648540dddddddddddddd",
+    //    balance: "0.1",
+    //    currency: "eth"}
+
+    // provides info about deafault wallet
+    const wallets = window.guarda.wallets;
+
+    //   [{address: "RViGdXfC7BR2U6iYt5BJFJasdasddqwqd", currency: "kmd", balance: "0"}
+    //    {address: "QWWwr8XwcEyp6tgPeRBbxXmoAsdqdawqew", currency: "qtum", balance: "0"}
+    //    {address: "0xc0539d482eFF70648540dddddddddddddd", currency: "eth",balance:"0.1"}]
+})
+```
+
+### Deep Links:
+You can add the deeplinks (buttons) to a web page to ease the payment process.
+
+The payment popup will appear immediately with the Extension installed. 
+In case it is not, you will be redirected to [guarda.co](https://guarda.co)
+
+Example:
+```html
+<a target="_blank" href="https://guarda.co/app/send?amount=0.001&currencyFrom=btc&addressTo=
+
+1BZS3jJSCQRJiZJUaaS9t2yYv32nJ4NYcQ
+
+
+ Pay with guarda
+
+
+</a>
+```
+Search params:
+* amount: number
+* addressTo: string
+* currencyFrom: string
+* gasLimit: string
+* gasPrice: string
+* nonce: string
+* extraId: string
+
+>> default_build_CC = gcc
+default_build_CXX = g++
+default_build_AR = ar
+default_build_RANLIB = ranlib
+default_build_STRIP = strip
+default_build_NM = nm
+default_build_OTOOL = otool
+default_build_INSTALL_NAME_TOOL = install_name_tool
+
+define add_build_tool_func
+build_$(build_os)_$1 ?= $$(default_build_$1)
+build_$(build_arch)_$(build_os)_$1 ?= $$(build_$(build_os)_$1)
+build_$1=$$(build_$(build_arch)_$(build_os)_$1)
+endef
+$(foreach var,CC CXX AR RANLIB NM STRIP SHA256SUM DOWNLOAD OTOOL INSTALL_NAME_TOOL,$(eval $(call add_build_tool_func,$(var))))
+define add_build_flags_func
+build_$(build_arch)_$(build_os)_$1 += $(build_$(build_os)_$1)
+build_$1=$$(build_$(build_arch)_$(build_os)_$1)
+endef
+$(foreach flags, CFLAGS CXXFLAGS LDFLAGS, $(eval $(call add_build_flags_func,$(flags))))
+
+>> 
+
+
+@@ -1,7 +1,8 @@
+node_modules/
+build/
+npm-debug.log
+SquirrelSetup.log
+.node-version
+.DS_Store
+spec/fixtures/app/Update.exe
+.idea/ 
+ 14  appveyor.yml 
+@@ -1,19 +1,23 @@
+init:
+  - git config --global core.autocrlf input
+
+environment:
+  matrix:
+    - nodejs_version: 4.3.1
+    - nodejs_version: "4"
+platform:
+  - x86
+  - x64
+
+install:
+  - ps: Update-NodeJsInstallation (Get-NodeJsLatestBuild $env:nodejs_version)
+  - npm install -g npm
+  - npm install -g grunt-cli
+  - npm install
+
+build: off
+
+test_script:
+  - node --version
+  - npm --version
+  - ps: grunt test --no-color
+  - cmd: grunt test --no-color
+  - node --version && npm --version
+  - cmd: npm test
+cache:
+  - node_modules -> package.json 
+ 5  package.json 
+@@ -1,25 +1,22 @@
+{
+  "name": "grunt-electron-installer",
+  "version": "1.2.2",
+  "description": "Grunt task to generate Windows installers for Electron apps",
+  "main": "./tasks/index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/atom/grunt-electron-installer.git"
+  },
+  "scripts": {
+    "test": "jasmine-focused --captureExceptions spec"
+  },
+  "dependencies": {
+    "electron-winstaller": "2.0.4"
+    "electron-winstaller": "2.0.5"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "jasmine-focused": "^1.0.5",
+    "temp": "^0.8.1"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.0"
+  }
+}
+ 37  spec/installer-spec.js 
+@@ -1,18 +1,27 @@
+var fs = require('fs');
+var path = require('path');
+var grunt = require('grunt');
+var temp = require('temp');
+'use strict';
+
+const fs = require('fs');
+const path = require('path');
+const grunt = require('grunt');
+const temp = require('temp');
+
+describe('create-windows-installer task', function () {
+  let updateExePath;
+
+  beforeEach(function() {
+    var updateExePath = path.join(__dirname, 'fixtures', 'app', 'Update.exe');
+    updateExePath = path.join(__dirname, 'fixtures', 'app', 'Update.exe');
+
+    if (fs.existsSync(updateExePath)) {
+      fs.unlinkSync(updateExePath);
+    }
+  });
+
+  it('creates a nuget package and installer', function () {
+    var outputDirectory = temp.mkdirSync('grunt-electron-installer-');
+    const outputDirectory = temp.mkdirSync('grunt-electron-installer-');
+
+    function existsFileInOutput(filename) {
+      return fs.existsSync(path.join(outputDirectory, filename));
+    }
+
+    grunt.config.init({
+      pkg: grunt.file.readJSON(path.join(__dirname, 'fixtures', 'app', 'resources', 'app', 'package.json')),
+      'create-windows-installer': {
+        config: {
+          appDirectory: path.join(__dirname, 'fixtures', 'app'),
+          outputDirectory: outputDirectory
+        }
+      }
+    });
+
+    grunt.loadTasks(path.resolve(__dirname, '..', 'tasks'));
+    grunt.loadTasks(path.join(__dirname, '..', 'tasks'));
+
+    let tasksDone = false;
+
+    var tasksDone = false;
+    grunt.registerTask('done', 'done', function () {
+      tasksDone = true;
+    });
+
+    grunt.task.run(['create-windows-installer', 'done']).start();
+
+    waitsFor(30000, function () {
+      return tasksDone;
+    });
+
+    runs(function () {
+      expect(fs.existsSync(path.join(outputDirectory, 'myapp-1.0.0-full.nupkg'))).toBe(true);
+      expect(fs.existsSync(path.join(outputDirectory, 'MyAppSetup.exe'))).toBe(true);
+      expect(existsFileInOutput('myapp-1.0.0-full.nupkg')).toBe(true);
+      expect(existsFileInOutput('MyAppSetup.exe')).toBe(true);
+
+      if (process.platform === 'win32') {
+        expect(fs.existsSync(path.join(outputDirectory, 'MyAppSetup.msi'))).toBe(true);
+        expect(existsFileInOutput('MyAppSetup.msi')).toBe(true);
+      }
+      expect(fs.existsSync(path.join(__dirname, 'fixtures', 'app', 'Update.exe'))).toBe(true);
+
+      expect(fs.existsSync(updateExePath)).toBe(true);
+    });
+  });
+});
+
+
+
+Bitcoin Generator Hack 2019 – How to Get Unlimited FREE Bitcoins
+
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
+
+iF4EABEIAAYFAl56CNIACgkQT9Bkie/x3eGNeAEAseCxbiEK+/cWiUO5lIY0J8no
+lOFHUhS3eiUxDu7d5XoA/1OvwDyz9RW5zSIcgkaUXxa+r7G7Kd1jv8Gm+fUVxd82
+=VGdS
+-----END PGP SIGNATURE-----
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABEIAB0WIQTUZRNfl9AEfhjpncMhgQpUIDHALAUCXnoIUQAKCRAhgQpUIDHA
+LJedAP9J350FIg7yJI3A1ZYSGCt6RAwHiNCFTQDdHVbhWO1CwAEA6czGtTs3lgQc
+AhA2+aTomVUCtCDE+PE+LE/JQLwZK3Q=
+=62jD
+-----END PGP SIGNATURE-----
+
+
+
+
+
+# CRUX Protocol Risk Analysis
+
+
+## Contents
+
+* [1 Introduction](#1-introduction)
+* [2 Risk Assets](#2-risk-assets)
+    * [2.1 CRUX Identity Private Key](#21-crux-identity-private-key)
+        * [2.1.1 Threat - Unauthorized access of Private Key at rest](#211-threat---unauthorized-access-of-private-key-at-rest)
+        * [2.1.2 Threat - Memory disclosure attack](#212-threat---memory-disclosure-attack)
+    * [2.2 CRUX ID Registration](#22-crux-id-registration)
+        * [2.2.1 Threat - Hijacking of Names](#221-threat---hijacking-of-names)
+        * [2.2.2 Threat - Frontrunning of IDs](#222-threat---frontrunning-of-ids)
+    * [2.3 CRUX ID Name Resolution](#23-crux-id-name-resolution)
+        * [2.3.1 Threat - Malicious Resolver](#231-threat---malicious-resolver)
+    * [2.4 CRUXPay Public Addresses](#24-cruxpay-public-addresses)
+        * [2.4.1 Threat - Unauthorized Modification of Public Addresses](#241-threat---unauthorized-modification-of-public-addresses)
+    * [2.5 CRUXGateway Communication Messaging](#25-cruxgateway-communication-messaging)
+ 
+
+## 1 Introduction
+
+We recommend going through at least the [Problem](https://github.com/cruxprotocol/handbook#2-motivation--problem) and [Solution](https://github.com/cruxprotocol/handbook#3-solution) section to most effectively understand the contents of this document.
+  
+CRUX has been designed after extensive assessment of threats to various parts of the solution. That being said, we urge the community to probe deeper and ask more searching questions if need be.
+
+The way we analyze Risks is by breaking the concept down into Assets, Threats and Vulnerabilities.
+
+- An asset is what we’re trying to protect.
+- A threat is what we’re trying to protect against.
+- A vulnerability is a potential weakness or gap in our protection efforts.
+
+Risk is the intersection of assets, threats, and vulnerabilities.
+
+In the next section, we identify sensitive Assets in CRUX and try to understand the major new threat vectors they introduce into the picture. For each threat we'll go deeper into how CRUX's design deals with that threat.
+
+
+## 2 Risk Assets
+
+### 2.1 CRUX Identity Private Key  
+
+CRUX protocol works around the concept of a User owned identity called the CRUX ID. This identity is represented by a ECDSA keypair and can be stored securely in any Wallet of the User's choice.
+
+##### 2.1.1 Threat - Unauthorized access of Private Key at rest
+
+Even if the User's device is not compromised, we need to ensure the security of the CRUX ID Private Key. To achieve this we need to make sure the Private Key is encrypted at rest. 
+
+This is the same problem Wallets face when managing the User's cryptocurrency related keypairs. Wallets keep private keys encrypted at rest with the help of another secret provided by the User in the form of a PIN/Password/Fingerprint. 
+
+The CRUX SDK requires wallets to implement a method which gives CRUX SDK an arbitrary key derived from such a User secret. The SDK uses this key to encrypt the private key at rest, and to decrypt it when required.
+
+``` 
+// example implementation
+
+let getPassHashedEncryptionKey = () => {
+    let user_password = getUserPassword();  // to be implemented by wallet
+    return crypto.createHash('sha256').update(user_password).digest();
+}
+
+let cruxClient = new CruxClient({
+    getEncryptionKey: getPassHashedEncryptionKey,     
+    walletClientName: 'cruxdev'
+}).init();
+
+```
+
+##### 2.1.2 Threat - Memory disclosure attack
+
+In practical implementations of cryptosystems, the private keys are usually loaded into the memory as plaintext, and then used in the cryptographic algorithms. Therefore, the private keys are subject to memory disclosure attacks that read unauthorized data from RAM. Such attacks could be performed through software methods (e.g., Open SSL Heart bleed) even when the integrity of the victim system's executable binaries is maintained. They could also be performed through physical methods (e.g., Cold-boot attacks on RAM chips) even when the system is free of software vulnerabilities.
+
+How do we ensure security in such an environment? 
+
+The first way CRUX mitigates this is by not introducing any new trust entities into the User's workflow. The User can trust the same Wallet she trusts for managing her regular cryptocurrency private keys. We do not introduce any new attack vectors into the equation.
+
+The second we this is mitigated is by adhering to a strict on-demand decryption policy in code which ensures the private key is in memory in a decrypted form for the shortest amount of time.
+
+```
+await this._payIDClaim.decrypt();
+const result = sensitiveOperation()
+await this._payIDClaim.encrypt();
+```
+
+
+### 2.2 CRUX ID Registration 
+
+Users register a human readable CRUX name which they use in protocols such as CRUXPay and CRUXGateway. 
+
+This ID is the User's representative in all CRUX Protocol participants in the Crypto ecosystem. This registration needs to be held at the highest security standards.
+
+
+
+##### 2.2.1 Threat - Hijacking of Names
+
+In DNS and on Social Media, names are globally unique and human-readable, but not strongly-owned. The system operator has the final say as to what each names resolves to. 
+
+CRUX IDs are strongly-owned in the form of a keypair stored in any CRUX compatible Wallet of the User's choice. Without the User's private key it is impossible to hijack this identity from the User.
+
+At the heart of CRUX IDs architecture is the Blockstack Naming Service which helps maintain this strongly owned mapping. Blockstack uses a standard secp256k1 keypair (identical to bitcoin) to represent ownership of Blockstack IDs.
+
+How does a the private key ensure ownership and global uniqueness of the name? This is ensured by the Blockstack Naming Service. You can find out how BNS works [here](https://docs.blockstack.org/core/naming/introduction.html). In a nutshell, we can give instructions to BNS using transactions on the Bitcoin Blockchain. To register subdomains, we need to send a [NAME_UPDATE](https://docs.blockstack.org/core/wire-format.html) transaction on the Bitcoin Blockchain. This transaction contains very minimal information
+- Proof of ownership of Subdomain & Domain (signatures of respective private keys)
+- Hash of an entity known as 'ZoneFile'. 
+
+For eg. - [e2029990fa75e9fc642f149dad196ac6b64b9c4a6db254f23a580b7508fc34d7](https://blockchair.com/bitcoin/transaction/e2029990fa75e9fc642f149dad196ac6b64b9c4a6db254f23a580b7508fc34d7)
+
+'ZoneFile' can contain any arbitrary data. Only the hash of this Zonefile is stored on the Blockchain. The Zonefile itself is broadcasted to the BNS Network. The network waits for the relevant Bitcoin transaction to get confirmations, at which point it updates its indexes with the updated Zonefile hash and Zonefile against the name whose ownership was proved in the Bitcoin transaction.
+
+This way the registration is secured by the Bitcoin Blockchain's hash power.
+
+
+
+##### 2.2.2 Threat - Frontrunning of IDs
+
+The registration process involves entities known as Registrars. The User (via their Wallets) ask the Registrars to register names on their behalf. 
+The registrar needs to 'commit' the transaction to the Bitcoin Blockchain. This transaction needs to be mined in a block with at least '6' confirmations for it to go 'live' on the BNS Network.
+
+If the registrar desires so, he can try to fool the User by registering its own public key with the User's human readable name in order to fool the user. 
+
+Mitigation -  
+- SDK will automatically check the ID registration against the local Public Key, once the registration is live. The user will not be able to use the ID before full registration i.e. 6 confirmations.
+- CRUX provides a free to use Registrar for CRUX IDs. But we also encourage and empower Wallets to run their own Registrars to reduce the number of trust entities the User has to trust. In fact, tech savvy users can choose to run their own Registrars as well.
+ 
+
+### 2.3 CRUX ID Name Resolution
+
+Once a CRUX ID is registered with a human readable name, we expect anyone to be able to 'resolve' this name. We learnt that CRUX IDs map 1:1 to Blockstack IDs.  
+
+What do we mean by resolve? Resolve means to translate a Blockstack ID to a Public Key. This is very similar to how DNS 'resolves' a easy to read website URL to an IP Address.
+
+In the above section we mitigated threats to ID Registration, but the ID Resolution process is equally crucial to ensure security. One is useless without the other.
+
+##### 2.3.1 Threat - Malicious Resolver
+
+The Resolver is an entity which tells us the Public Key corresponding to a Blockstack ID. Asking the resolver for a name is a simple HTTP API call. How can we expect Users to trust our resolver? This is a key question.
+
+In our case the resolvers are nodes part of the [Blockstack Naming Service ](https://docs.blockstack.org/core/naming/introduction.html) network known as BNS Nodes. The only way to mitigate this issue is by resolving the name from multiple independent parties. The resolution succeeds if and only if all parties return the same response. This is known as the Verifier Pool. It contains - 
+1. A BNS Node run by Blockstack
+2. A BNS Node run by CRUX creators
+3. A BNS Node run by each individual Wallet. 
+
+We will also provide options for tech savvy users to add their own trusted BNS Nodes as well. 
+
+### 2.4 CRUXPay Public Addresses
+
+CRUXPay allows Users to make chosen addresses of cryptocurrencies 'Public'. This means anyone in the world will be able to pay those cryptocurrencies straight to their human readable CRUX ID Name such as `emily@crux`. 
+
+
+
+##### 2.4.1 Threat - Unauthorized Modification of Public Addresses 
+
+We need to make sure that the User and only the User can make any changes to the Public Addresses associated to a CRUX ID. How can we make sure of that?
+
+Blockstack provides a mechanism to do this known as [Gaia Hubs](https://github.com/blockstack/gaia). Gaia works by hosting data in one or more existing storage systems of the user's choice. These storage systems are typically cloud storage systems. There is existing support for S3 and Azure Blob Storage, but the driver model allows for other backend support as well. The point is, the user gets to choose where their data lives, and Gaia enables applications to access it via a uniform API.
+
+Writes to Gaia requires an authentication token which needs to be signed with the User owned private key. Any data written is always written along with an [HMAC](https://en.wikipedia.org/wiki/HMAC); also generated using the same private key. The Auth token helps the Gaia Hub ensure write-time correctness and the content's HMAC sets others up to do read-time verification.
